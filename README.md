@@ -1,71 +1,126 @@
-# React Technical Test
+# 🛡️ React Technical Test
 
-Este proyecto es una prueba técnica realizada con **React + Vite** que incluye funcionalidades como autenticación con roles, rutas protegidas, consumo de APIs simuladas y un diseño responsivo.
+Este proyecto es una prueba técnica construida con **React**, que incluye autenticación, control de roles (admin/usuario), rutas protegidas, contexto global, mocks con `msw` y diseño responsivo.
 
-🌐 **Demo en vivo:** [https://test.cevadev.com](https://test.cevadev.com)
+## 🚀 Demo en producción
 
-## Tecnologías utilizadas
+👉 [https://test.cevadev.com](https://test.cevadev.com)
 
-- [React 19](https://react.dev/)
-- [Vite](https://vitejs.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
+---
+
+## 🧹 Funcionalidades
+
+- Login / Registro con control de sesión
+- Acceso protegido a rutas por rol (`admin` o `usuario`)
+- Vistas condicionales para usuarios y administradores
+- Simulación de API con **MSW (Mock Service Worker)**
+- Diseño adaptable a dispositivos móviles
+- Composición con Context API para autenticación y alertas
+
+---
+
+## 📦 Tecnologías
+
+- [React](https://reactjs.org/)
 - [React Router DOM](https://reactrouter.com/)
-- [Axios](https://axios-http.com/)
-- [uuid](https://github.com/uuidjs/uuid)
-- [bcryptjs](https://github.com/dcodeIO/bcrypt.js)
-- [jose](https://github.com/panva/jose) (para manejo de JWT)
-- [MSW](https://mswjs.io/) (Mock Service Worker)
+- [MSW (Mock Service Worker)](https://mswjs.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
+- [Context API](https://reactjs.org/docs/context.html)
 
-## Instalación
+---
+
+## 🛠️ Instalación
 
 ```bash
 # Clona el repositorio
-git clone https://github.com/tu-usuario/react-technical-test.git
-cd react-technical-test
+git clone https://github.com/tu-usuario/tu-repo.git
+cd tu-repo
 
 # Instala las dependencias
 npm install
 
-```
-
-## Scripts disponibles
-
-# Iniciar el servidor de desarrollo
-
-```bash
+# Inicia el proyecto en modo desarrollo
 npm run dev
 ```
 
-# Construir para producción
+---
+
+## ⚙️ Variables de entorno
+
+Crea un archivo `.env` en la raíz del proyecto y copia las siguientes variables:
+
+```env
+VITE_JWT_SECRET=my_secret_key
+VITE_USE_AUTH=true
+VITE_DB_KEY=test_api
+VITE_USE_MOCKS=true
+```
+
+> Puedes definirlas también en `.env.production` para el entorno de producción.
+
+---
+
+## 🥪 Modo producción (mock incluido)
 
 ```bash
 npm run build
-```
-
-# Servir la versión de producción
-
-```bash
 npm run preview
 ```
 
-# Linting del proyecto
+Esto compila el proyecto y lo sirve en modo producción. Si `VITE_USE_MOCKS=true`, entonces **MSW interceptará las peticiones** y usará los handlers definidos en `src/mocks`.
+
+---
+
+## 🔐 Roles disponibles
+
+Los roles están simulados en el backend falso. Puedes ingresar con estos datos para probar la app:
+
+### Usuario administrador
 
 ```bash
-npm run lint
+Email: admin@test.com
+Contraseña: 123456
 ```
 
-## Estructura del proyecto
+### Usuario regular
 
+```bash
+Email: user@test.com
+Contraseña: 123456
 ```
 
-├── public/               # Archivos públicos y MSW
-├── src/                  # Código fuente del proyecto
-│   ├── App.jsx
-│   ├── main.jsx
-│   ├── Layout.jsx
-│   └── ...
-├── dist/                 # Archivos generados en la compilación
-├── package.json          # Dependencias y scripts
-├── vite.config.js        # Configuración de Vite
-└── eslint.config.js
+---
+
+## 📂 Estructura relevante
+
+```bash
+src/
+├— context/         # Contextos de autenticación y alertas
+├— mocks/           # MSW handlers para mocking de APIs
+├— pages/           # Páginas protegidas (Dashboard, Users, etc.)
+├— components/      # Componentes reutilizables
+└— App.jsx          # Definición de rutas
 ```
+
+---
+
+## 🧼 To-Do/Futuras mejoras
+
+- Conexión a una API real
+- Test unitarios con Jest o Vitest
+- Mejoras de accesibilidad (a11y)
+- Gestión de errores globales
+
+---
+
+## 🧑‍💻 Autor
+
+**Cristian Valdez**
+Desarrollador Full Stack & Dramaturgo
+
+---
+
+## 🪄 Licencia
+
+Este proyecto está disponible bajo la licencia MIT.
