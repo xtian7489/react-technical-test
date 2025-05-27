@@ -116,4 +116,4 @@ Desarrollador Full Stack & Dramaturgo
 
 ## 🪄 Licencia
 
-Este proyecto está disponible bajo la licencia MIT.
+El software se encuentra licenciado bajo GPL-v3. Creemos en la importancia del código abierto
