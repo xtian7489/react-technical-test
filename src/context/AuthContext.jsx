@@ -4,6 +4,7 @@ import { redirect } from "react-router-dom";
 
 const AuthContext = createContext();
 
+// Proveedor de contexto para manejar la autenticación global del usuario
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(() => sessionStorage.getItem("token"));
   const [user, setUser] = useState(null);
@@ -13,17 +14,20 @@ export function AuthProvider({ children }) {
 
   const isAdmin = useMemo(() => user?.role === "admin", [user]);
 
+  // Inicia sesión: guarda el token en localStorage y en el estado global
   const login = (token) => {
     sessionStorage.setItem("token", token);
     setToken(token);
   };
 
+  // Cierra sesión: limpia localStorage y el estado global
   const logout = () => {
     sessionStorage.clear();
     setToken(null);
     setUser(null);
   };
 
+  // Al iniciar la app, intenta restaurar la sesión desde localStorage
   const verify = async () => {
     setLoading(true);
 
@@ -53,10 +57,11 @@ export function AuthProvider({ children }) {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     verify();
   }, [token]);
-
+  // Valores y funciones expuestas a través del contexto de autenticación
   return (
     <AuthContext.Provider
       value={{
