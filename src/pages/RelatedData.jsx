@@ -61,13 +61,12 @@ const RelatedData = () => {
 
       setAddresses(addressesRes.data.addresses);
       setStudies(studiesRes.data);
+      setLoading(false);
     } catch (err) {
       showAlert(
         `Error obteniendo datos: ${err.response?.data?.message || err.message}`,
         "error"
       );
-    } finally {
-      setLoading(false);
     }
   };
 
