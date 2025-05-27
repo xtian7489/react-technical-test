@@ -29,7 +29,8 @@ const Login = () => {
       }
 
       const data = await res.json();
-      login(data.token, data.user);
+
+      login(data.accessToken, data.refreshToken);
       navigate("/");
     } catch (err) {
       setError(err.message || "Error al iniciar sesión");

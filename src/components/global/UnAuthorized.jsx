@@ -38,14 +38,6 @@ const UnAuthorized = () => {
               <FaHome className="mr-2" />
               Ir al inicio
             </Link>
-
-            <a
-              href="mailto:admin@tudominio.com"
-              className="w-full flex items-center justify-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            >
-              <FaEnvelope className="mr-2" />
-              Contactar al administrador
-            </a>
           </div>
         </div>
 

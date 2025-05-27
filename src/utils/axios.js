@@ -1,17 +1,15 @@
 import axios from "axios";
 
-// Configuración base del cliente API
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL || import.meta.env.BASE_URL,
   timeout: 10000,
 });
 
-// Añade token JWT a los headers
 apiClient.interceptors.request.use(
   (config) => {
     const token = sessionStorage.getItem("token");
 
-    if (token) {
+    if (token && !config.skipAuthRefresh) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -19,23 +17,48 @@ apiClient.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Manejo de errores globales
 apiClient.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response) {
-      const { status } = error.response;
+  async (error) => {
+    const originalRequest = error.config;
+    const { refreshAuthToken } = useAuth();
 
-      if (status === 401) {
-        console.warn("Token inválido o expirado. Redirigiendo al login...");
-        window.location.href = "/auth/login"; // Redirige si no autorizado
-      } else if (status >= 500) {
-        console.error("Error del servidor. Intenta más tarde.");
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      !originalRequest.url.includes("/auth/refresh")
+    ) {
+      originalRequest._retry = true;
+
+      try {
+        const newToken = await refreshAuthToken();
+
+        if (newToken) {
+          originalRequest.headers.Authorization = `Bearer ${newToken}`;
+          return apiClient(originalRequest);
+        }
+      } catch (refreshError) {
+        console.error("Error refreshing token:", refreshError);
+        window.location.href = "/auth/login";
+        return Promise.reject(refreshError);
+      }
+    }
+
+    if (error.response) {
+      switch (error.response.status) {
+        case 403:
+          console.error("Acceso denegado. No tienes permisos suficientes.");
+          break;
+        case 500:
+          console.error("Error del servidor. Intenta más tarde.");
+          break;
+        default:
+          console.error("Error en la solicitud:", error.response.status);
       }
     } else if (error.request) {
       console.error("No hay respuesta del servidor. Verifica tu conexión.");
     } else {
-      console.error("Error al enviar la solicitud:", error.message);
+      console.error("Error al configurar la solicitud:", error.message);
     }
 
     return Promise.reject(error);

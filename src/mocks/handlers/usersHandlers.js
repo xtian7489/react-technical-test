@@ -1,7 +1,7 @@
 import { delay, http, HttpResponse } from "msw";
 import { getDatabaseTable, verifyToken, withAuth } from "../helpers";
 import { setItem } from "../../lib/localStorage";
-import { salt } from "../../lib/constants";
+import { jwtSecret, salt } from "../../lib/constants";
 import { v4 as uuidv4 } from "uuid";
 
 import bcrypt from "bcryptjs";
@@ -46,7 +46,9 @@ const userHandlers = [
       await delay(1000);
       const body = await request.json();
       const token = request.headers.get("Authorization")?.split(" ")[1];
-      const userData = await verifyToken(token, { returnPayload: true });
+      const userData = await verifyToken(token, jwtSecret, {
+        returnPayload: true,
+      });
       const users = getDatabaseTable("users").exec();
       const user = users.find((user) => user.id === userData.id);
 
