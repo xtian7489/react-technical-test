@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "../context/AuthContext";
 import { FaMapMarkerAlt, FaBook, FaUniversity } from "react-icons/fa";
 import apiClient from "../utils/axios";
 import DataCard from "../components/RelatedData/DataCard";
@@ -14,7 +13,6 @@ import StudyModal from "../components/userDetails/Education/StudyModal";
 import { useAlert } from "../context/AlertContext";
 
 const RelatedData = () => {
-  const { isAdmin } = useAuth();
   const { showAlert } = useAlert();
   const [addresses, setAddresses] = useState([]);
   const [studies, setStudies] = useState([]);

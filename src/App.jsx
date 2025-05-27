@@ -6,7 +6,6 @@ import {
   RouterProvider,
   Navigate,
   Outlet,
-  useParams,
   useMatch,
 } from "react-router-dom";
 import Login from "./pages/auth/Login";
