@@ -14,9 +14,6 @@ const Home = () => {
       "Filtra y busca usuarios en tiempo real",
       "Exporta datos con un solo clic",
     ],
-    helpText:
-      "¡Empieza a explorar y optimiza tu flujo de trabajo! Si necesitas ayuda, revisa nuestra",
-    footerText: "¡Vamos a simplificar la administración juntos! 🚀",
   };
 
   const userContent = {
@@ -29,8 +26,6 @@ const Home = () => {
       "Configura tus preferencias de notificaciones",
       "Visualiza tu historial de actividades",
     ],
-    helpText: "¿Necesitas ayuda?",
-    footerText: "Consulta nuestra guía de usuario",
   };
 
   const content = isAdmin ? adminContent : userContent;
@@ -55,32 +50,11 @@ const Home = () => {
           ))}
         </ul>
 
-        {isAdmin ? (
-          <p className="mb-4 text-gray-700 dark:text-gray-300">
-            {content.helpText}{" "}
-            <a href="#" className="text-blue-500 hover:underline">
-              guía rápida
-            </a>{" "}
-            o contacta al equipo de soporte.
+        <div className="mt-6 p-4 bg-blue-50 rounded-lg dark:bg-gray-700">
+          <p className="text-gray-800 dark:text-gray-200 font-medium">
+            "¡Vamos a simplificar la administración juntos! 🚀"
           </p>
-        ) : (
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg dark:bg-gray-700">
-            <p className="text-gray-800 dark:text-gray-200 font-medium">
-              {content.helpText}{" "}
-              <a href="#" className="text-blue-500 hover:underline ml-1">
-                {content.footerText}
-              </a>
-            </p>
-          </div>
-        )}
-
-        {isAdmin && (
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg dark:bg-gray-700">
-            <p className="text-gray-800 dark:text-gray-200 font-medium">
-              {content.footerText}
-            </p>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );

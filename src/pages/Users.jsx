@@ -49,7 +49,12 @@ const Users = () => {
     setUsers([]);
     try {
       const res = await apiClient.get("/api/users");
+      if (res.status !== 200) throw new Error("Usuario no encontrado");
       const { data } = res;
+      if (typeof data !== "object") {
+        fetchUsers();
+        return;
+      }
       setUsers(data);
       setIsLoading(false);
     } catch (error) {

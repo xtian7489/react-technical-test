@@ -46,6 +46,19 @@ const RelatedData = () => {
       const addressesRes = await apiClient.get("/api/address");
       const studiesRes = await apiClient.get("/api/studies");
 
+      if (addressesRes.status !== 200)
+        throw new Error("direcciones no encontradas");
+      if (studiesRes.status !== 200)
+        throw new Error("direcciones no encontradas");
+
+      if (
+        typeof addressesRes.data !== "object" ||
+        typeof studiesRes.data !== "object"
+      ) {
+        fetchData();
+        return;
+      }
+
       setAddresses(addressesRes.data.addresses);
       setStudies(studiesRes.data);
     } catch (err) {
