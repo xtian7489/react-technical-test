@@ -81,14 +81,14 @@ Los roles están simulados en el backend falso. Puedes ingresar con estos datos 
 ### Usuario administrador
 
 ```bash
-Email: admin@test.com
+Email: admin@site.com
 Contraseña: 123456
 ```
 
 ### Usuario regular
 
 ```bash
-Email: user@test.com
+Email: user@site.com
 Contraseña: 123456
 ```
 
