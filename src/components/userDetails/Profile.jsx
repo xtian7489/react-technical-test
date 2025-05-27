@@ -8,7 +8,7 @@ import {
 
 const Profile = ({ user }) => {
   return (
-    <div className="grid md:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div>
         <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
           Datos personales
@@ -18,7 +18,7 @@ const Profile = ({ user }) => {
             <label className="block text-sm font-medium text-gray-500 dark:text-gray-400">
               Nombre completo
             </label>
-            <p className="mt-1 text-sm text-gray-900 dark:text-white">
+            <p className="mt-1 text-sm text-gray-900 dark:text-white break-words">
               {user.name}
             </p>
           </div>
@@ -26,8 +26,8 @@ const Profile = ({ user }) => {
             <label className="block text-sm font-medium text-gray-500 dark:text-gray-400">
               Correo electrónico
             </label>
-            <p className="mt-1 text-sm text-gray-900 dark:text-white flex items-center">
-              <FaEnvelope className="mr-2" />
+            <p className="mt-1 text-sm text-gray-900 dark:text-white flex items-center break-all">
+              <FaEnvelope className="flex-shrink-0 mr-2" />
               {user.email}
             </p>
           </div>
@@ -36,14 +36,14 @@ const Profile = ({ user }) => {
               Teléfono
             </label>
             <p className="mt-1 text-sm text-gray-900 dark:text-white flex items-center">
-              <FaPhone className="mr-2" />
+              <FaPhone className="flex-shrink-0 mr-2" />
               {user.phone || "No especificado"}
             </p>
           </div>
         </div>
       </div>
 
-      <div>
+      <div className="mt-6 md:mt-0">
         <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
           Información adicional
         </h3>
@@ -53,7 +53,7 @@ const Profile = ({ user }) => {
               Rol
             </label>
             <p className="mt-1 text-sm text-gray-900 dark:text-white flex items-center">
-              <FaUserShield className="mr-2" />
+              <FaUserShield className="flex-shrink-0 mr-2" />
               {user.role === "admin" ? "Administrador" : "Usuario normal"}
             </p>
           </div>
@@ -62,7 +62,7 @@ const Profile = ({ user }) => {
               Fecha de registro
             </label>
             <p className="mt-1 text-sm text-gray-900 dark:text-white flex items-center">
-              <FaCalendarAlt className="mr-2" />
+              <FaCalendarAlt className="flex-shrink-0 mr-2" />
               {new Date(user.createdAt).toLocaleDateString()}
             </p>
           </div>

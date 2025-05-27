@@ -4,10 +4,10 @@ import { FaMapMarkerAlt, FaBook, FaUniversity } from "react-icons/fa";
 import apiClient from "../utils/axios";
 import DataCard from "../components/RelatedData/DataCard";
 import DataTable from "../components/RelatedData/DataTable";
-import Loading from "../components/global/Loading";
-import UnAuthorized from "../components/global/UnAuthorized";
 import Pagination from "../components/RelatedData/Pagination";
 import SearchBox from "../components/RelatedData/SearchBox";
+import Loading from "../components/global/Loading";
+import UnAuthorized from "../components/global/UnAuthorized";
 import ConfirmationModal from "../components/global/ConfirmationModal";
 import AddressModal from "../components/userDetails/Address/AddressModal";
 import StudyModal from "../components/userDetails/Education/StudyModal";
@@ -111,9 +111,6 @@ const RelatedData = () => {
           break;
         case "study":
           endpoint = `/api/studies/${itemToDelete.id}`;
-          break;
-        case "user":
-          endpoint = `/api/users/${itemToDelete.id}`;
           break;
         default:
           throw new Error("Tipo de elemento no soportado");
@@ -339,7 +336,10 @@ const RelatedData = () => {
       />
       <StudyModal
         isOpen={isStudyModalOpen}
-        onClose={() => setIsStudyModalOpen(false)}
+        onClose={() => {
+          setIsStudyModalOpen(false);
+          setEditedItem(null);
+        }}
         onSave={fetchData}
         initialStudy={EditedItem}
       />

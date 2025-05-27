@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaMapMarkerAlt, FaCheck, FaTimes, FaSpinner } from "react-icons/fa";
 import apiClient from "../../../utils/axios";
+import { useAlert } from "../../../context/AlertContext";
 
 const AddressModal = ({
   isOpen,
@@ -53,9 +54,9 @@ const AddressModal = ({
     try {
       let endpoint, method;
 
-      if (user) {
+      if (user && !address.id) {
         endpoint = `/api/users/${user.id}/address`;
-        method = Object.keys(user.address).length > 0 ? "PUT" : "POST";
+        method = "POST";
       } else if (address.id) {
         endpoint = `/api/address/${address.id}`;
         method = "PUT";
@@ -76,7 +77,10 @@ const AddressModal = ({
         onClose();
       }
     } catch (error) {
-      showAlert("Error al guardar la dirección", "error");
+      showAlert(
+        error.response?.data?.message || "Error al guardar la dirección",
+        "error"
+      );
     } finally {
       setIsSaving(false);
     }

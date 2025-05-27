@@ -59,9 +59,9 @@ const Pagination = ({
         </button>
       </div>
 
-      <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+      <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between px-1">
         <div>
-          <p className="text-sm text-gray-700 dark:text-gray-300">
+          <p className=" text-sm text-gray-700 dark:text-gray-300">
             Mostrando{" "}
             <span className="font-medium">
               {(currentPage - 1) * itemsPerPage + 1}

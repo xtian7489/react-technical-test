@@ -1,14 +1,7 @@
-import React from "react";
-import {
-  FaBars,
-  FaBeer,
-  FaChartPie,
-  FaTable,
-  FaUser,
-  FaUsers,
-} from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaBars, FaChartPie, FaTable, FaUser, FaUsers } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   FaBagShopping,
   FaRightFromBracket,
@@ -17,53 +10,98 @@ import {
 
 const Sidebar = () => {
   const { logout, isAuthenticated, user, isAdmin } = useAuth();
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  // Cerrar sidebar al cambiar de ruta (en mobile)
+  useEffect(() => {
+    setIsMobileSidebarOpen(false);
+  }, [location]);
+
+  // Cerrar sidebar al hacer clic fuera (en mobile)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const sidebar = document.getElementById("logo-sidebar");
+      const toggleButton = document.querySelector("[data-drawer-toggle]");
+
+      if (
+        isMobileSidebarOpen &&
+        sidebar &&
+        toggleButton &&
+        !sidebar.contains(event.target) &&
+        !toggleButton.contains(event.target)
+      ) {
+        setIsMobileSidebarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileSidebarOpen]);
+
+  const toggleSidebar = () => {
+    setIsMobileSidebarOpen(!isMobileSidebarOpen);
+  };
 
   return (
     <>
+      {/* Botón para toggle en mobile */}
       <button
         data-drawer-target="logo-sidebar"
         data-drawer-toggle="logo-sidebar"
         aria-controls="logo-sidebar"
         type="button"
+        onClick={toggleSidebar}
         className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
-        <span className="sr-only">Open sidebar</span>
-        <FaBars className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+        <span className="sr-only">Abrir menú</span>
+        <FaBars className="w-5 h-5" />
       </button>
 
+      {/* Overlay para mobile */}
+      {isMobileSidebarOpen && (
+        <div className="fixed inset-0 z-30 bg-black bg-opacity-50 sm:hidden" />
+      )}
+
+      {/* Sidebar */}
       <aside
         id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+          isMobileSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
           <div className="flex items-center ps-2.5 mb-5">
             <img
               src="https://www.zocoweb.com.ar/static/media/logo.e3c0b2196cc23f84f67a.png"
               className="h-6 me-3 sm:h-7"
-              alt="Flowbite Logo"
+              alt="Logo"
             />
           </div>
           <ul className="space-y-2 font-medium">
             <li>
               <Link
-                href="/"
+                to="/"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <FaChartPie className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <FaChartPie className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="ms-3">Dashboard</span>
               </Link>
             </li>
 
             <li>
               <Link
-                to={`/users/${user.id}`}
+                to={`/users/${user?.id}`}
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <FaBagShopping className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <FaBagShopping className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                 <span className="flex-1 ms-3 whitespace-nowrap">Perfil</span>
               </Link>
             </li>
+
             {isAdmin && (
               <>
                 <li>
@@ -71,7 +109,7 @@ const Sidebar = () => {
                     to="/users"
                     className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                   >
-                    <FaUsers className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    <FaUsers className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                     <span className="flex-1 ms-3 whitespace-nowrap">
                       Usuarios
                     </span>
@@ -82,7 +120,7 @@ const Sidebar = () => {
                     to="/related-data"
                     className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                   >
-                    <FaTable className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    <FaTable className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                     <span className="flex-1 ms-3 whitespace-nowrap">
                       Datos relacionados
                     </span>
@@ -90,6 +128,7 @@ const Sidebar = () => {
                 </li>
               </>
             )}
+
             {isAuthenticated ? (
               <>
                 <li>
@@ -97,25 +136,22 @@ const Sidebar = () => {
                     to={`/users/${user.id}`}
                     className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                   >
-                    <FaUser className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                    <span className="flex-1 ms-3 whitespace-nowrap">
+                    <FaUser className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    <span className="flex-1 ms-3 whitespace-nowrap truncate">
                       {user.email}
                     </span>
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="#"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  <button
+                    onClick={logout}
+                    className="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                   >
-                    <FaRightFromBracket className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
-                    <span
-                      className="flex-1 ms-3 whitespace-nowrap"
-                      onClick={logout}
-                    >
+                    <FaRightFromBracket className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    <span className="flex-1 ms-3 whitespace-nowrap text-left">
                       Logout
                     </span>
-                  </Link>
+                  </button>
                 </li>
               </>
             ) : (
@@ -124,7 +160,7 @@ const Sidebar = () => {
                   to="/auth/login"
                   className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                 >
-                  <FaRightToBracket className="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                  <FaRightToBracket className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                   <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
                 </Link>
               </li>

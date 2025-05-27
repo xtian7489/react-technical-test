@@ -1,3 +1,4 @@
+import { useState, useRef, useEffect } from "react";
 import { FaEllipsisV, FaEdit, FaTrash } from "react-icons/fa";
 
 const DataCard = ({
@@ -11,6 +12,30 @@ const DataCard = ({
   badgeKey,
   badgeColor = "green",
 }) => {
+  const [openDropdownId, setOpenDropdownId] = useState(null);
+  const dropdownRefs = useRef({});
+
+  const toggleDropdown = (id) => {
+    setOpenDropdownId(openDropdownId === id ? null : id);
+  };
+
+  const handleClickOutside = (event) => {
+    if (
+      Object.values(dropdownRefs.current).every(
+        (ref) => ref && !ref.contains(event.target)
+      )
+    ) {
+      setOpenDropdownId(null);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   if (data.length === 0) {
     return (
       <div className="p-6 text-center text-gray-500 dark:text-gray-400">
@@ -24,7 +49,7 @@ const DataCard = ({
       {data.map((item) => (
         <div
           key={item.id}
-          className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700"
+          className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700 relative"
         >
           <div className="flex items-start justify-between">
             <div>
@@ -54,28 +79,44 @@ const DataCard = ({
             </div>
 
             {(onEdit || onDelete) && (
-              <div className="dropdown relative">
-                <button className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
+              <div
+                className="relative"
+                ref={(el) => (dropdownRefs.current[item.id] = el)}
+              >
+                <button
+                  onClick={() => toggleDropdown(item.id)}
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 p-1"
+                  aria-label="Menú de acciones"
+                >
                   <FaEllipsisV />
                 </button>
-                <div className="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg dark:bg-gray-700 z-10 hidden">
-                  {onEdit && (
-                    <button
-                      onClick={() => onEdit(item)}
-                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
-                    >
-                      <FaEdit className="inline mr-2" /> Editar
-                    </button>
-                  )}
-                  {onDelete && (
-                    <button
-                      onClick={() => onDelete(item.id)}
-                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-600"
-                    >
-                      <FaTrash className="inline mr-2" /> Eliminar
-                    </button>
-                  )}
-                </div>
+
+                {openDropdownId === item.id && (
+                  <div className="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg dark:bg-gray-700 z-10">
+                    {onEdit && (
+                      <button
+                        onClick={() => {
+                          onEdit(item);
+                          setOpenDropdownId(null);
+                        }}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                      >
+                        <FaEdit className="inline mr-2" /> Editar
+                      </button>
+                    )}
+                    {onDelete && (
+                      <button
+                        onClick={() => {
+                          onDelete(item.id);
+                          setOpenDropdownId(null);
+                        }}
+                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-600"
+                      >
+                        <FaTrash className="inline mr-2" /> Eliminar
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
             )}
           </div>

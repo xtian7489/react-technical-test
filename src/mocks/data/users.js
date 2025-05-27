@@ -1,6 +1,7 @@
 let users = [
   {
     id: "21186f91-d99f-4f4f-a163-c0e116f9f8fa",
+    name: "admin",
     email: "admin@site.com",
     password: "$2b$10$NwjWaWQ0lSSP2PKs4WjFgePtRNzozEGCtfKQXrcyi.HY1y3yNIF7a", //123456
     role: "admin",
@@ -9,6 +10,7 @@ let users = [
   },
   {
     id: "21186f91-d99f-4f4f-a163-c0e116f9f7fa",
+    name: "user",
     email: "user@site.com",
     password: "$2b$10$NwjWaWQ0lSSP2PKs4WjFgePtRNzozEGCtfKQXrcyi.HY1y3yNIF7a", //123456
     role: "user",

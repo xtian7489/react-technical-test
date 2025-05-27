@@ -5,15 +5,12 @@ import App from "./App.jsx";
 import { populatedb } from "./mocks/data/populate.js";
 
 async function enableMocking() {
-  if (import.meta.env.MODE !== "development") {
-    return;
+  if (import.meta.env.VITE_USE_MOCKS === "true") {
+    const { worker } = await import("./mocks/browser");
+    worker.start();
   }
-
-  const { worker } = await import("./mocks/browser.js");
-
-  return worker.start();
 }
-if (import.meta.env.MODE === "development") {
+if (import.meta.env.VITE_USE_MOCKS === "true") {
   populatedb();
 }
 
