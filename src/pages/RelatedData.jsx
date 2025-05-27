@@ -152,7 +152,7 @@ const RelatedData = () => {
   };
 
   if (loading) return <Loading type="table" message="Cargando datos..." />;
-  if (!isAdmin) return <UnAuthorized />;
+  // if (!isAdmin) return <UnAuthorized />;
 
   return (
     <div className="p-4 md:p-6 dark:bg-gray-900 min-h-screen">

@@ -6,6 +6,8 @@ import {
   RouterProvider,
   Navigate,
   Outlet,
+  useParams,
+  useMatch,
 } from "react-router-dom";
 import Login from "./pages/auth/Login";
 import Dashboard from "./pages/Dashboard";
@@ -17,6 +19,7 @@ import Loading from "./components/global/Loading";
 import UserDetail from "./pages/UserDetail";
 import RelatedData from "./pages/RelatedData";
 import AlertProvider from "./context/AlertContext";
+import UnAuthorized from "./components/global/UnAuthorized";
 const ProtectedRoute = () => {
   const { isAuthenticated, loading } = useAuth();
 
@@ -36,6 +39,23 @@ const ProtectedRoute = () => {
   );
 };
 
+const AdminRoute = () => {
+  const { isAdmin, loading, user } = useAuth();
+  const match = useMatch("/users/:id");
+  const id = match?.params.id;
+
+  if (loading)
+    return (
+      <Loading
+        type="user"
+        message="Verificando sesión..."
+        subMessage="Por favor espera un momento"
+      />
+    );
+
+  return isAdmin || user.id === id ? <Outlet /> : <UnAuthorized />;
+};
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -45,8 +65,12 @@ const router = createBrowserRouter(
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
-          <Route path="users" element={<Users />} />
+        </Route>
+      </Route>
+      <Route element={<AdminRoute />}>
+        <Route path="/" element={<Layout />}>
           <Route path="users/:id" element={<UserDetail />} />
+          <Route path="users" element={<Users />} />
           <Route path="related-data" element={<RelatedData />} />
         </Route>
       </Route>

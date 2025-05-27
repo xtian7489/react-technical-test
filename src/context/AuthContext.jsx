@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useMemo } from "react";
 import { verifyToken } from "../mocks/helpers";
+import { redirect } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -21,6 +22,7 @@ export function AuthProvider({ children }) {
     sessionStorage.clear();
     setToken(null);
     setUser(null);
+    redirect("/auth/login");
   };
 
   const verify = async () => {
