@@ -13,9 +13,10 @@ import DataTable from "../components/RelatedData/DataTable";
 import Pagination from "../components/RelatedData/Pagination";
 import SearchBox from "../components/RelatedData/SearchBox";
 import ConfirmationModal from "../components/global/ConfirmationModal";
+import UnAuthorized from "../components/global/UnAuthorized";
 
 const Users = () => {
-  const { user: currentUser } = useAuth();
+  const { user: currentUser, isAdmin } = useAuth();
   const { showAlert } = useAlert();
   const [userSearchTerm, setUserSearchTerm] = useState("");
   const [mobileView, setMobileView] = useState(false);
@@ -158,6 +159,7 @@ const Users = () => {
   );
   const totalUserPages = Math.ceil(filteredUsers.length / itemsPerPage);
 
+  if (!isAdmin) return <UnAuthorized />;
   if (isLoading) return <Loading type="list" />;
 
   return (

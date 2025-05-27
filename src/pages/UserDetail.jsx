@@ -99,6 +99,7 @@ const UserProfilePage = () => {
   if (loading) return <Loading type="user" message="Cargando usuario..." />;
   if (!user) return <div className="p-6">Usuario no encontrado</div>;
   const isCurrentUserProfile = currentUser?.id === user.id;
+
   if (!isAdmin && !isCurrentUserProfile) return <UnAuthorized />;
 
   return (
