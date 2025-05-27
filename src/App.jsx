@@ -64,13 +64,11 @@ const router = createBrowserRouter(
       <Route element={<ProtectedRoute />}>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
-        </Route>
-      </Route>
-      <Route element={<AdminRoute />}>
-        <Route path="/" element={<Layout />}>
-          <Route path="users/:id" element={<UserDetail />} />
-          <Route path="users" element={<Users />} />
-          <Route path="related-data" element={<RelatedData />} />
+          <Route element={<AdminRoute />}>
+            <Route path="users/:id" element={<UserDetail />} />
+            <Route path="users" element={<Users />} />
+            <Route path="related-data" element={<RelatedData />} />
+          </Route>
         </Route>
       </Route>
     </>

@@ -22,7 +22,6 @@ export function AuthProvider({ children }) {
     sessionStorage.clear();
     setToken(null);
     setUser(null);
-    redirect("/auth/login");
   };
 
   const verify = async () => {
