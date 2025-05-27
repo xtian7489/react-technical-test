@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import UserEditModal from "../components/users/UserAddEditModal";
+import UserEditModal from "../components/users/UserModal";
 import { FaP, FaPen } from "react-icons/fa6";
 import Loading from "../components/global/Loading";
-import UserModal from "../components/users/UserAddEditModal";
+import UserModal from "../components/users/UserModal";
 import { Link } from "react-router-dom";
 import apiClient from "../utils/axios";
 import { FaTrash } from "react-icons/fa";
 import DeleteUserModal from "../components/users/DeleteUserModal";
+import { useAlert } from "../context/AlertContext";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -22,6 +23,7 @@ const Users = () => {
     user: null,
   });
   const { user: currentUser } = useAuth();
+  const { showAlert } = useAlert();
   const fetchUsers = async () => {
     setUsers([]);
     try {
@@ -30,7 +32,7 @@ const Users = () => {
       setUsers(data);
       setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      showAlert(`Error obteniendo usuario`, "error");
     }
   };
 
@@ -61,7 +63,20 @@ const Users = () => {
         );
       }
     } catch (err) {
-      console.error(err);
+      showAlert(
+        err.response.data.message ||
+          `Error al  ${
+            modalState.mode === "add" ? "crear" : "actualizar"
+          } el usuario`,
+        "error"
+      );
+    } finally {
+      showAlert(
+        `Usuario ${
+          modalState.mode === "add" ? "creado" : "actualizado"
+        } correctamente`,
+        "success"
+      );
     }
   };
 
@@ -72,7 +87,7 @@ const Users = () => {
       await apiClient.delete(`/api/users/${deleteModalState.user.id}`);
       fetchUsers();
     } catch (error) {
-      console.error("Error deleting user:", error);
+      showAlert(`Error eliminando usuario`, "error");
     }
   };
 

@@ -11,9 +11,11 @@ import SearchBox from "../components/RelatedData/SearchBox";
 import ConfirmationModal from "../components/global/ConfirmationModal";
 import AddressModal from "../components/userDetails/Address/AddressModal";
 import StudyModal from "../components/userDetails/Education/StudyModal";
+import { useAlert } from "../context/AlertContext";
 
 const RelatedData = () => {
   const { isAdmin } = useAuth();
+  const { showAlert } = useAlert();
   const [addresses, setAddresses] = useState([]);
   const [studies, setStudies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -28,6 +30,7 @@ const RelatedData = () => {
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   const [isStudyModalOpen, setIsStudyModalOpen] = useState(false);
   const [EditedItem, setEditedItem] = useState(null);
+
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -48,7 +51,10 @@ const RelatedData = () => {
       setAddresses(addressesRes.data.addresses);
       setStudies(studiesRes.data);
     } catch (err) {
-      console.error("Error fetching data:", err);
+      showAlert(
+        `Error obteniendo datos: ${err.response?.data?.message || err.message}`,
+        "error"
+      );
     } finally {
       setLoading(false);
     }
@@ -117,7 +123,12 @@ const RelatedData = () => {
       fetchData();
       setConfirmModalOpen(false);
     } catch (error) {
-      console.error("Error deleting item:", error);
+      showAlert(
+        `Error eliminando ${itemToDelete.type}: ${
+          error.response?.data?.message || error.message
+        }`,
+        "error"
+      );
     } finally {
       setLoadingDelete(false);
     }

@@ -5,9 +5,7 @@ import App from "./App.jsx";
 import { populatedb } from "./mocks/data/populate.js";
 
 async function enableMocking() {
-  console.log();
-
-  if (import.meta.env !== "development") {
+  if (import.meta.env.MODE !== "development") {
     return;
   }
 
@@ -15,14 +13,10 @@ async function enableMocking() {
 
   return worker.start();
 }
-if (import.meta.env === "development") {
+if (import.meta.env.MODE === "development") {
   populatedb();
 }
 
 enableMocking().then(() => {
-  createRoot(document.getElementById("root")).render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
+  createRoot(document.getElementById("root")).render(<App />);
 });

@@ -16,6 +16,7 @@ import Users from "./pages/Users";
 import Loading from "./components/global/Loading";
 import UserDetail from "./pages/UserDetail";
 import RelatedData from "./pages/RelatedData";
+import AlertProvider from "./context/AlertContext";
 const ProtectedRoute = () => {
   const { isAuthenticated, loading } = useAuth();
 
@@ -56,9 +57,11 @@ const router = createBrowserRouter(
 const App = () => {
   return (
     <>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
+      <AlertProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </AlertProvider>
     </>
   );
 };

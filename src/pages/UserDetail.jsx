@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaEdit, FaTrash, FaArrowLeft } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
 import Loading from "../components/global/Loading";
-import UserModal from "../components/users/UserAddEditModal";
+import UserModal from "../components/users/UserModal";
 import Profile from "../components/userDetails/Profile";
 import Education from "../components/userDetails/Education";
 import Header from "../components/userDetails/Header";
@@ -11,14 +11,17 @@ import Tabs from "../components/userDetails/Tabs";
 import UnAuthorized from "../components/global/UnAuthorized";
 import apiClient from "../utils/axios";
 import Address from "../components/userDetails/Address";
+import { useAlert } from "../context/AlertContext";
 
 const UserProfilePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { user: currentUser, isAdmin, token } = useAuth();
+  const { showAlert } = useAlert();
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+
   const [modalOpen, setModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("profile");
 
@@ -29,7 +32,6 @@ const UserProfilePage = () => {
       const res = await apiClient.get(
         `/api/users/${id}?include=studies,address`
       );
-
       if (res.status !== 200) throw new Error("Usuario no encontrado");
       const { data } = res;
 
@@ -39,7 +41,10 @@ const UserProfilePage = () => {
         address: data.address || {},
       });
     } catch (err) {
-      setError(err.message);
+      showAlert(
+        err.response.data.message || "Error al obtener el usuario",
+        "error"
+      );
       navigate("/users", { replace: true });
     } finally {
       setLoading(false);
@@ -59,7 +64,10 @@ const UserProfilePage = () => {
 
       navigate("/users");
     } catch (err) {
-      setError(err.message);
+      showAlert(
+        err.response.data.message || "Error al eliminar el usuario",
+        "error"
+      );
     }
   };
 
@@ -81,7 +89,10 @@ const UserProfilePage = () => {
       setUser(user);
       setModalOpen(false);
     } catch (err) {
-      setError(err.message);
+      showAlert(
+        err.response.data.message || "Error al actualizar el usuario",
+        "error"
+      );
     }
   };
 

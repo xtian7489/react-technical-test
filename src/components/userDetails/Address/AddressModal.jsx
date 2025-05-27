@@ -10,6 +10,8 @@ const AddressModal = ({
   initialAddress = null,
   onSuccess = () => {},
 }) => {
+  const { showAlert } = useAlert();
+
   const [address, setAddress] = useState({
     street: "",
     postalCode: "",
@@ -74,10 +76,7 @@ const AddressModal = ({
         onClose();
       }
     } catch (error) {
-      console.error("Error saving address:", error);
-      setError(
-        error.response?.data?.message || "Error al guardar la dirección"
-      );
+      showAlert("Error al guardar la dirección", "error");
     } finally {
       setIsSaving(false);
     }

@@ -30,6 +30,13 @@ const userHandlers = [
       const populateFields = include ? include.split(",") : [];
       const users = getDatabaseTable("users").populate(populateFields).exec();
       const user = users.find((user) => user.id === id);
+      console.log(user);
+      if (!user) {
+        return HttpResponse.json(
+          { message: "User not found" },
+          { status: 404 }
+        );
+      }
       return HttpResponse.json(user);
     })
   ),
