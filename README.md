@@ -34,8 +34,8 @@ Este proyecto es una prueba técnica construida con **React**, que incluye auten
 
 ```bash
 # Clona el repositorio
-git clone https://github.com/tu-usuario/tu-repo.git
-cd tu-repo
+git clone https://github.com/xtian7489/react-technical-test
+cd react-technical-test
 
 # Instala las dependencias
 npm install
@@ -58,6 +58,8 @@ VITE_USE_MOCKS=true
 ```
 
 > Puedes definirlas también en `.env.production` para el entorno de producción.
+
+**Nota:** Los datos de la aplicación se almacenan en el navegador utilizando `localStorage` bajo el nombre especificado en la variable `VITE_DB_KEY`.
 
 ---
 
@@ -98,19 +100,10 @@ Contraseña: 123456
 src/
 ├— context/         # Contextos de autenticación y alertas
 ├— mocks/           # MSW handlers para mocking de APIs
-├— pages/           # Páginas protegidas (Dashboard, Users, etc.)
+├— pages/
 ├— components/      # Componentes reutilizables
 └— App.jsx          # Definición de rutas
 ```
-
----
-
-## 🧼 To-Do/Futuras mejoras
-
-- Conexión a una API real
-- Test unitarios con Jest o Vitest
-- Mejoras de accesibilidad (a11y)
-- Gestión de errores globales
 
 ---
 
