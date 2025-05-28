@@ -54,7 +54,7 @@ const Sidebar = () => {
         aria-controls="logo-sidebar"
         type="button"
         onClick={toggleSidebar}
-        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-zinc-500 rounded-lg sm:hidden hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-200 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:focus:ring-zinc-600"
       >
         <span className="sr-only">Abrir menú</span>
         <FaBars className="w-5 h-5" />
@@ -73,11 +73,16 @@ const Sidebar = () => {
         } sm:translate-x-0`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-zinc-50 dark:bg-zinc-800 border-r border-zinc-200 dark:border-zinc-700">
           <div className="flex items-center ps-2.5 mb-5">
             <img
-              src="https://www.zocoweb.com.ar/static/media/logo.e3c0b2196cc23f84f67a.png"
-              className="h-6 me-3 sm:h-7"
+              src="/zoco-logo.png"
+              className="h-6 me-3 sm:h-7 dark:hidden"
+              alt="Logo"
+            />
+            <img
+              src="/zoco-logo-dark.png"
+              className="h-6 me-3 sm:h-7 hidden dark:block"
               alt="Logo"
             />
           </div>
@@ -85,9 +90,9 @@ const Sidebar = () => {
             <li>
               <Link
                 to="/"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-zinc-900 rounded-lg dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 group"
               >
-                <FaChartPie className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <FaChartPie className="w-5 h-5 text-zinc-500 transition duration-75 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white" />
                 <span className="ms-3">Dashboard</span>
               </Link>
             </li>
@@ -95,9 +100,9 @@ const Sidebar = () => {
             <li>
               <Link
                 to={`/users/${user?.id}`}
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-zinc-900 rounded-lg dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 group"
               >
-                <FaBagShopping className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                <FaBagShopping className="w-5 h-5 text-zinc-500 transition duration-75 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white" />
                 <span className="flex-1 ms-3 whitespace-nowrap">Perfil</span>
               </Link>
             </li>
@@ -107,9 +112,9 @@ const Sidebar = () => {
                 <li>
                   <Link
                     to="/users"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    className="flex items-center p-2 text-zinc-900 rounded-lg dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 group"
                   >
-                    <FaUsers className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    <FaUsers className="w-5 h-5 text-zinc-500 transition duration-75 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white" />
                     <span className="flex-1 ms-3 whitespace-nowrap">
                       Usuarios
                     </span>
@@ -118,9 +123,9 @@ const Sidebar = () => {
                 <li>
                   <Link
                     to="/related-data"
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    className="flex items-center p-2 text-zinc-900 rounded-lg dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 group"
                   >
-                    <FaTable className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    <FaTable className="w-5 h-5 text-zinc-500 transition duration-75 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white" />
                     <span className="flex-1 ms-3 whitespace-nowrap">
                       Datos relacionados
                     </span>
@@ -134,9 +139,9 @@ const Sidebar = () => {
                 <li>
                   <Link
                     to={`/users/${user.id}`}
-                    className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    className="flex items-center p-2 text-zinc-900 rounded-lg dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 group"
                   >
-                    <FaUser className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    <FaUser className="w-5 h-5 text-zinc-500 transition duration-75 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white" />
                     <span className="flex-1 ms-3 whitespace-nowrap truncate">
                       {user.email}
                     </span>
@@ -145,9 +150,9 @@ const Sidebar = () => {
                 <li>
                   <button
                     onClick={logout}
-                    className="flex items-center w-full p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                    className="flex items-center w-full p-2 text-zinc-900 rounded-lg dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 group"
                   >
-                    <FaRightFromBracket className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                    <FaRightFromBracket className="w-5 h-5 text-zinc-500 transition duration-75 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white" />
                     <span className="flex-1 ms-3 whitespace-nowrap text-left">
                       Logout
                     </span>
@@ -158,9 +163,9 @@ const Sidebar = () => {
               <li>
                 <Link
                   to="/auth/login"
-                  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                  className="flex items-center p-2 text-zinc-900 rounded-lg dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-700 group"
                 >
-                  <FaRightToBracket className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
+                  <FaRightToBracket className="w-5 h-5 text-zinc-500 transition duration-75 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-white" />
                   <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
                 </Link>
               </li>

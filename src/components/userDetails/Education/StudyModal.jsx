@@ -93,20 +93,20 @@ const StudyModal = ({ isOpen, onClose, onSave, initialStudy }) => {
       <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div className="fixed inset-0 transition-opacity" aria-hidden="true">
           <div
-            className="absolute inset-0 bg-gray-500 opacity-75 dark:bg-gray-900 dark:opacity-80"
+            className="absolute inset-0 bg-zinc-500 opacity-75 dark:bg-zinc-900 dark:opacity-80"
             onClick={onClose}
           ></div>
         </div>
 
-        <div className="inline-block relative z-50 align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full dark:bg-gray-800">
+        <div className="inline-block relative z-50 align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full dark:bg-zinc-800">
           <div className="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div className="flex justify-between items-start">
-              <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+              <h3 className="text-lg leading-6 font-medium text-zinc-900 dark:text-white">
                 {initialStudy ? "Editar Estudio" : "Crear Nuevo Estudio"}
               </h3>
               <button
                 onClick={onClose}
-                className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+                className="text-zinc-400 hover:text-zinc-500 dark:hover:text-zinc-300"
               >
                 <FaTimes className="h-5 w-5" />
               </button>
@@ -122,13 +122,13 @@ const StudyModal = ({ isOpen, onClose, onSave, initialStudy }) => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1"
                 >
                   Nombre del estudio
                 </label>
                 <div className="relative rounded-md shadow-sm">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FaGraduationCap className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+                    <FaGraduationCap className="h-5 w-5 text-zinc-400 dark:text-zinc-500" />
                   </div>
                   <input
                     type="text"
@@ -139,8 +139,8 @@ const StudyModal = ({ isOpen, onClose, onSave, initialStudy }) => {
                     className={`block w-full pl-10 pr-3 py-2 border ${
                       errors.name
                         ? "border-red-300"
-                        : "border-gray-300 dark:border-gray-600"
-                    } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white`}
+                        : "border-zinc-300 dark:border-zinc-600"
+                    } rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 dark:bg-zinc-700 dark:text-white`}
                     placeholder="Ej: Licenciatura en Administración de Empresas"
                   />
                 </div>
@@ -154,13 +154,13 @@ const StudyModal = ({ isOpen, onClose, onSave, initialStudy }) => {
               <div>
                 <label
                   htmlFor="institution"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1"
                 >
                   Institución Educativa
                 </label>
                 <div className="relative rounded-md shadow-sm">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FaUniversity className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+                    <FaUniversity className="h-5 w-5 text-zinc-400 dark:text-zinc-500" />
                   </div>
                   <input
                     type="text"
@@ -171,8 +171,8 @@ const StudyModal = ({ isOpen, onClose, onSave, initialStudy }) => {
                     className={`block w-full pl-10 pr-3 py-2 border ${
                       errors.institution
                         ? "border-red-300"
-                        : "border-gray-300 dark:border-gray-600"
-                    } rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white`}
+                        : "border-zinc-300 dark:border-zinc-600"
+                    } rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 dark:bg-zinc-700 dark:text-white`}
                     placeholder="Nombre de la institución"
                   />
                 </div>
@@ -186,13 +186,13 @@ const StudyModal = ({ isOpen, onClose, onSave, initialStudy }) => {
               <div>
                 <label
                   htmlFor="description"
-                  className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+                  className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1"
                 >
                   Descripción (opcional)
                 </label>
                 <div className="relative rounded-md shadow-sm">
                   <div className="absolute top-3 left-3">
-                    <FaAlignLeft className="h-5 w-5 text-gray-400 dark:text-gray-500" />
+                    <FaAlignLeft className="h-5 w-5 text-zinc-400 dark:text-zinc-500" />
                   </div>
                   <textarea
                     id="description"
@@ -200,7 +200,7 @@ const StudyModal = ({ isOpen, onClose, onSave, initialStudy }) => {
                     value={formData.description}
                     onChange={handleChange}
                     rows={3}
-                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+                    className="block w-full pl-10 pr-3 py-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 dark:bg-zinc-700 dark:text-white"
                     placeholder="Descripción del estudio"
                   />
                 </div>
@@ -211,14 +211,14 @@ const StudyModal = ({ isOpen, onClose, onSave, initialStudy }) => {
                   type="button"
                   onClick={onClose}
                   disabled={isLoading}
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  className="px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
                   Cancelar
                 </button>
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className={`inline-flex justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+                  className={`inline-flex justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 ${
                     isLoading ? "opacity-70 cursor-not-allowed" : ""
                   }`}
                 >

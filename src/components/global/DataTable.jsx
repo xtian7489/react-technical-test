@@ -3,13 +3,13 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 const DataTable = ({ columns, data, onEdit, onDelete, emptyMessage }) => {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full divide-y divide-gray-200 dark:divide-gray-700">
-        <thead className="bg-gray-50 dark:bg-gray-700">
+      <table className="w-full divide-y divide-zinc-200 dark:divide-zinc-700">
+        <thead className="bg-zinc-50 dark:bg-zinc-700">
           <tr>
             {columns.map((column) => (
               <th
                 key={column.key}
-                className={`px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider ${
+                className={`px-4 md:px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-300 uppercase tracking-wider ${
                   column.className || ""
                 }`}
               >
@@ -17,18 +17,18 @@ const DataTable = ({ columns, data, onEdit, onDelete, emptyMessage }) => {
               </th>
             ))}
             <th
-              className={`px-4 md:px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider`}
+              className={`px-4 md:px-6 py-3 text-left text-xs font-medium text-zinc-500 dark:text-zinc-300 uppercase tracking-wider`}
             >
               Acciones
             </th>
           </tr>
         </thead>
-        <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700 dark:text-white">
+        <tbody className="bg-white dark:bg-zinc-800 divide-y divide-zinc-200 dark:divide-zinc-700 dark:text-white">
           {data.length > 0 ? (
             data.map((item) => (
               <tr
                 key={item.id}
-                className="hover:bg-gray-50 dark:hover:bg-gray-700"
+                className="hover:bg-zinc-50 dark:hover:bg-zinc-700"
               >
                 {columns.map((column) => (
                   <td
@@ -46,7 +46,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, emptyMessage }) => {
                       {onEdit && (
                         <button
                           onClick={() => onEdit(item)}
-                          className="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
+                          className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300"
                         >
                           <FaEdit className="inline mr-1" /> Editar
                         </button>
@@ -68,7 +68,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, emptyMessage }) => {
             <tr>
               <td
                 colSpan={columns.length}
-                className="px-6 py-4 text-center text-gray-500 dark:text-gray-400"
+                className="px-6 py-4 text-center text-zinc-500 dark:text-zinc-400"
               >
                 {emptyMessage}
               </td>

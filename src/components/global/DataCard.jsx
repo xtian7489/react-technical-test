@@ -38,24 +38,24 @@ const DataCard = ({
 
   if (data.length === 0) {
     return (
-      <div className="p-6 text-center text-gray-500 dark:text-gray-400">
+      <div className="p-6 text-center text-zinc-500 dark:text-zinc-400">
         {emptyMessage}
       </div>
     );
   }
 
   return (
-    <div className="divide-y divide-gray-200 dark:divide-gray-700">
+    <div className="divide-y divide-zinc-200 dark:divide-zinc-700">
       {data.map((item) => (
         <div
           key={item.id}
-          className="p-4 hover:bg-gray-50 dark:hover:bg-gray-700 relative"
+          className="p-4 hover:bg-zinc-50 dark:hover:bg-zinc-700 relative"
         >
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center mb-2">
                 {Icon && <Icon className={`text-${badgeColor}-500 mr-2`} />}
-                <h3 className="font-medium text-gray-900 dark:text-white">
+                <h3 className="font-medium text-zinc-900 dark:text-white">
                   {item[titleKey]}
                 </h3>
               </div>
@@ -63,7 +63,7 @@ const DataCard = ({
               {subtitleKeys.map((key) => (
                 <div
                   key={key}
-                  className="text-sm text-gray-500 dark:text-gray-400 mb-1"
+                  className="text-sm text-zinc-500 dark:text-zinc-400 mb-1"
                 >
                   {item[key]}
                 </div>
@@ -85,21 +85,21 @@ const DataCard = ({
               >
                 <button
                   onClick={() => toggleDropdown(item.id)}
-                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 p-1"
+                  className="text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300 p-1"
                   aria-label="Menú de acciones"
                 >
                   <FaEllipsisV />
                 </button>
 
                 {openDropdownId === item.id && (
-                  <div className="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg dark:bg-gray-700 z-10">
+                  <div className="dropdown-menu absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg dark:bg-zinc-700 z-10">
                     {onEdit && (
                       <button
                         onClick={() => {
                           onEdit(item);
                           setOpenDropdownId(null);
                         }}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600"
+                        className="block w-full text-left px-4 py-2 text-sm text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-600"
                       >
                         <FaEdit className="inline mr-2" /> Editar
                       </button>
@@ -110,7 +110,7 @@ const DataCard = ({
                           onDelete(item.id);
                           setOpenDropdownId(null);
                         }}
-                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:text-red-400 dark:hover:bg-gray-600"
+                        className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-zinc-100 dark:text-red-400 dark:hover:bg-zinc-600"
                       >
                         <FaTrash className="inline mr-2" /> Eliminar
                       </button>

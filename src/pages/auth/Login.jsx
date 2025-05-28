@@ -40,20 +40,25 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center px-4 py-8">
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900 flex items-center px-4 py-8">
       <div className="w-full max-w-md mx-auto">
         <div className="text-center mb-8">
           <img
-            className="mx-auto h-12 w-auto"
-            src="https://www.zocoweb.com.ar/static/media/logo.e3c0b2196cc23f84f67a.png"
+            src="/zoco-logo.png"
+            className="mx-auto h-12 w-auto dark:hidden"
             alt="Logo"
           />
-          <h2 className="mt-4 text-2xl font-bold text-gray-900 dark:text-white">
+          <img
+            src="/zoco-logo-dark.png"
+            className="mx-auto h-12 w-auto hidden dark:block"
+            alt="Logo"
+          />
+          <h2 className="mt-4 text-2xl font-bold text-zinc-900 dark:text-white">
             Iniciar sesión
           </h2>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-zinc-800 rounded-lg shadow-md p-6 border border-zinc-200 dark:border-zinc-700">
           {error && (
             <div className="mb-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 text-red-700 dark:text-red-300 px-4 py-3 rounded text-sm">
               {error}
@@ -67,7 +72,7 @@ const Login = () => {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaUser className="h-4 w-4 text-gray-400" />
+                  <FaUser className="h-4 w-4 text-zinc-400" />
                 </div>
                 <input
                   id="email"
@@ -77,7 +82,7 @@ const Login = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm"
+                  className="block w-full pl-10 pr-3 py-2 border border-zinc-300 dark:border-zinc-600 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500 dark:bg-zinc-700 dark:text-white text-sm"
                   placeholder="usuario@ejemplo.com"
                 />
               </div>
@@ -89,7 +94,7 @@ const Login = () => {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaLock className="h-4 w-4 text-gray-400" />
+                  <FaLock className="h-4 w-4 text-zinc-400" />
                 </div>
                 <input
                   id="password"
@@ -99,7 +104,7 @@ const Login = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-sm"
+                  className="block w-full pl-10 pr-3 py-2 border border-zinc-300 dark:border-zinc-600 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500 dark:bg-zinc-700 dark:text-white text-sm"
                   placeholder="••••••••"
                 />
               </div>
@@ -108,7 +113,7 @@ const Login = () => {
             <div className="text-right">
               <a
                 href="#"
-                className="text-xs text-blue-600 hover:text-blue-500 dark:text-blue-400"
+                className="text-xs text-gray-600 hover:text-gray-500 dark:text-gray-400"
               >
                 ¿Olvidaste tu contraseña?
               </a>
@@ -117,7 +122,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className={`w-full flex justify-center items-center py-2 px-4 rounded-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+              className={`w-full flex justify-center items-center py-2 px-4 rounded-md text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 ${
                 isLoading ? "opacity-70 cursor-not-allowed" : ""
               }`}
             >
@@ -137,10 +142,10 @@ const Login = () => {
 
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
+              <div className="w-full border-t border-zinc-300 dark:border-zinc-600"></div>
             </div>
             <div className="relative flex justify-center">
-              <span className="px-2 bg-white dark:bg-gray-800 text-xs text-gray-500 dark:text-gray-400">
+              <span className="px-2 bg-white dark:bg-zinc-800 text-xs text-zinc-500 dark:text-zinc-400">
                 ¿No tienes cuenta?
               </span>
             </div>
@@ -148,7 +153,7 @@ const Login = () => {
 
           <Link
             to="/auth/signup"
-            className="block w-full text-center py-2 px-4 border border-gray-300 dark:border-gray-600 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+            className="block w-full text-center py-2 px-4 border border-zinc-300 dark:border-zinc-600 rounded-md text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-600"
           >
             Registrarse
           </Link>

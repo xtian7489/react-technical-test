@@ -31,30 +31,28 @@ const Home = () => {
   const content = isAdmin ? adminContent : userContent;
 
   return (
-    <div className="p-6 dark:bg-gray-900 min-h-screen">
-      <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 border border-gray-200">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          {content.title}
-        </h1>
+    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md dark:bg-zinc-800 dark:border-zinc-700 border border-zinc-200">
+      <h1 className="text-2xl font-bold text-zinc-900 dark:text-white mb-4">
+        {content.title}
+      </h1>
 
-        <p className="mb-4 text-gray-700 dark:text-gray-300">
-          {content.description}
+      <p className="mb-4 text-zinc-700 dark:text-zinc-300">
+        {content.description}
+      </p>
+
+      <ul className="space-y-2 mb-6 text-zinc-700 dark:text-zinc-300">
+        {content.features.map((feature, index) => (
+          <li key={index} className="flex items-center">
+            <span className="w-2 h-2 mr-2 bg-gray-500 rounded-full"></span>
+            {feature}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-6 p-4 bg-gray-50 rounded-lg dark:bg-zinc-700">
+        <p className="text-zinc-800 dark:text-zinc-200 font-medium">
+          "¡Vamos a simplificar la administración juntos! 🚀"
         </p>
-
-        <ul className="space-y-2 mb-6 text-gray-700 dark:text-gray-300">
-          {content.features.map((feature, index) => (
-            <li key={index} className="flex items-center">
-              <span className="w-2 h-2 mr-2 bg-blue-500 rounded-full"></span>
-              {feature}
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-6 p-4 bg-blue-50 rounded-lg dark:bg-gray-700">
-          <p className="text-gray-800 dark:text-gray-200 font-medium">
-            "¡Vamos a simplificar la administración juntos! 🚀"
-          </p>
-        </div>
       </div>
     </div>
   );

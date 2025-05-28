@@ -36,9 +36,9 @@ const AlertComponent = ({ message, type = "info", onClose }) => {
     },
     info: {
       icon: <FaInfoCircle className="h-5 w-5" />,
-      bgColor: "bg-blue-50",
-      textColor: "text-blue-800",
-      borderColor: "border-blue-200",
+      bgColor: "bg-gray-50",
+      textColor: "text-gray-800",
+      borderColor: "border-gray-200",
     },
   };
 

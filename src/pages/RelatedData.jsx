@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { FaMapMarkerAlt, FaBook, FaUniversity } from "react-icons/fa";
 import apiClient from "../utils/axios";
-import DataCard from "../components/RelatedData/DataCard";
-import DataTable from "../components/RelatedData/DataTable";
-import Pagination from "../components/RelatedData/Pagination";
-import SearchBox from "../components/RelatedData/SearchBox";
+import DataCard from "../components/global/DataCard";
+import DataTable from "../components/global/DataTable";
+import Pagination from "../components/global/Pagination";
+import SearchBox from "../components/global/SearchBox";
 import Loading from "../components/global/Loading";
 import UnAuthorized from "../components/global/UnAuthorized";
 import ConfirmationModal from "../components/global/ConfirmationModal";
@@ -167,11 +167,11 @@ const RelatedData = () => {
   if (!isAdmin) return <UnAuthorized />;
 
   return (
-    <div className="p-4 md:p-6 dark:bg-gray-900 min-h-screen">
+    <>
       <div className="max-w-7xl mx-auto space-y-6">
-        <div className="bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
-          <div className="p-4 md:px-6 md:py-4 border-b border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-            <h2 className="text-lg font-medium text-gray-900 dark:text-white">
+        <div className="bg-white rounded-lg shadow-md dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+          <div className="p-4 md:px-6 md:py-4 border-b border-zinc-200 dark:border-zinc-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <h2 className="text-lg font-medium text-zinc-900 dark:text-white">
               Lista de Direcciones
             </h2>
             <SearchBox
@@ -211,7 +211,7 @@ const RelatedData = () => {
                         />
                         <span className="flex-1">{item.street}</span>
                       </div>
-                      <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1">
+                      <div className="text-xs md:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
                         CP: {item.postalCode}
                       </div>
                     </>
@@ -246,9 +246,9 @@ const RelatedData = () => {
           />
         </div>
 
-        <div className="bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
-          <div className="p-4 md:px-6 md:py-4 border-b border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-            <h2 className="text-lg font-medium text-gray-900 dark:text-white">
+        <div className="bg-white rounded-lg shadow-md dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+          <div className="p-4 md:px-6 md:py-4 border-b border-zinc-200 dark:border-zinc-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <h2 className="text-lg font-medium text-zinc-900 dark:text-white">
               Lista de Estudios
             </h2>
             <SearchBox
@@ -289,7 +289,7 @@ const RelatedData = () => {
                   title: "Institución",
                   render: (item) => (
                     <div className="flex items-center ">
-                      <FaUniversity size={15} className="text-blue-500 mr-2 " />
+                      <FaUniversity size={15} className="text-gray-500 mr-2 " />
                       <span className="flex-1">{item.institution}</span>
                     </div>
                   ),
@@ -355,7 +355,7 @@ const RelatedData = () => {
         onSave={fetchData}
         initialStudy={EditedItem}
       />
-    </div>
+    </>
   );
 };
 

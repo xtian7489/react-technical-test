@@ -2,14 +2,14 @@ import React from "react";
 
 const Tabs = ({ activeTab, setActiveTab }) => {
   return (
-    <div className="border-b border-gray-200 dark:border-gray-700 ">
+    <div className="border-b border-zinc-200 dark:border-zinc-700 ">
       <nav className="flex -mb-px">
         <button
           onClick={() => setActiveTab("profile")}
           className={`mr-8 py-4 px-1 border-b-2 font-medium text-sm ${
             activeTab === "profile"
-              ? "border-blue-500 text-blue-600 dark:text-blue-400"
-              : "border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              ? "border-gray-500 text-gray-600 dark:text-gray-400"
+              : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
           }`}
         >
           Información personal
@@ -18,8 +18,8 @@ const Tabs = ({ activeTab, setActiveTab }) => {
           onClick={() => setActiveTab("education")}
           className={`mr-8 py-4 px-1 border-b-2 font-medium text-sm ${
             activeTab === "education"
-              ? "border-blue-500 text-blue-600 dark:text-blue-400"
-              : "border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              ? "border-gray-500 text-gray-600 dark:text-gray-400"
+              : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
           }`}
         >
           Formación académica
@@ -28,8 +28,8 @@ const Tabs = ({ activeTab, setActiveTab }) => {
           onClick={() => setActiveTab("address")}
           className={`mr-8 py-4 px-1 border-b-2 font-medium text-sm ${
             activeTab === "address"
-              ? "border-blue-500 text-blue-600 dark:text-blue-400"
-              : "border-transparent text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+              ? "border-gray-500 text-gray-600 dark:text-gray-400"
+              : "border-transparent text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
           }`}
         >
           Dirección

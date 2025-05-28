@@ -8,10 +8,10 @@ import apiClient from "../utils/axios";
 import { FaTrash, FaUser } from "react-icons/fa";
 import DeleteUserModal from "../components/users/DeleteUserModal";
 import { useAlert } from "../context/AlertContext";
-import DataCard from "../components/RelatedData/DataCard";
-import DataTable from "../components/RelatedData/DataTable";
-import Pagination from "../components/RelatedData/Pagination";
-import SearchBox from "../components/RelatedData/SearchBox";
+import DataCard from "../components/global/DataCard";
+import DataTable from "../components/global/DataTable";
+import Pagination from "../components/global/Pagination";
+import SearchBox from "../components/global/SearchBox";
 import ConfirmationModal from "../components/global/ConfirmationModal";
 import UnAuthorized from "../components/global/UnAuthorized";
 
@@ -168,12 +168,12 @@ const Users = () => {
   if (isLoading) return <Loading type="list" />;
 
   return (
-    <div className="p-4 md:p-6 dark:bg-gray-900 min-h-screen">
+    <>
       <div className="max-w-7xl mx-auto space-y-6">
-        <div className="bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
-          <div className="bg-white rounded-lg shadow-md dark:bg-gray-800 border border-gray-200 dark:border-gray-700 overflow-hidden">
-            <div className="p-4 md:px-6 md:py-4 border-b border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-              <h2 className="text-lg font-medium text-gray-900 dark:text-white">
+        <div className="bg-white rounded-lg shadow-md dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+          <div className="bg-white rounded-lg shadow-md dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 overflow-hidden">
+            <div className="p-4 md:px-6 md:py-4 border-b border-zinc-200 dark:border-zinc-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+              <h2 className="text-lg font-medium text-zinc-900 dark:text-white">
                 Lista de usuarios
               </h2>
               <SearchBox
@@ -216,9 +216,12 @@ const Users = () => {
                         <div className="">
                           <Link
                             to={`/users/${item.id}`}
-                            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 flex items-center"
+                            className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-300 flex items-center"
                           >
-                            <FaUser size={15} className="text-red-500 mr-2" />
+                            <FaUser
+                              size={15}
+                              className="text-blue-500 dark:text-gray-500 mr-2"
+                            />
                             <span className="flex-1">{item.name}</span>
                           </Link>
                         </div>
@@ -277,7 +280,7 @@ const Users = () => {
           onSave={handleUpdateUser}
         />
       )}
-    </div>
+    </>
   );
 };
 

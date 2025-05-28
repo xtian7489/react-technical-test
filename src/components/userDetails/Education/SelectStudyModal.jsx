@@ -82,20 +82,20 @@ const SelectStudyModal = ({
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <div className="fixed inset-0 transition-opacity" aria-hidden="true">
             <div
-              className="absolute inset-0 bg-gray-500 opacity-75 dark:bg-gray-900 dark:opacity-80"
+              className="absolute inset-0 bg-zinc-500 opacity-75 dark:bg-zinc-900 dark:opacity-80"
               onClick={onClose}
             ></div>
           </div>
 
           <div className="inline-block relative z-50 align-bottom rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl w-full">
-            <div className="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 max-h-[80vh] overflow-y-auto">
-              <div className="flex justify-between items-start sticky top-0 bg-white dark:bg-gray-800 pb-4 z-10">
-                <h3 className="text-lg leading-6 font-medium text-gray-900 dark:text-white">
+            <div className="bg-white dark:bg-zinc-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4 max-h-[80vh] overflow-y-auto">
+              <div className="flex justify-between items-start sticky top-0 bg-white dark:bg-zinc-800 pb-4 z-10">
+                <h3 className="text-lg leading-6 font-medium text-zinc-900 dark:text-white">
                   Seleccionar Estudios
                 </h3>
                 <button
                   onClick={onClose}
-                  className="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+                  className="text-zinc-400 hover:text-zinc-500 dark:hover:text-zinc-300"
                   aria-label="Cerrar modal"
                 >
                   <FaTimes className="h-5 w-5" />
@@ -105,8 +105,8 @@ const SelectStudyModal = ({
               <div className="mt-4">
                 {isFetching ? (
                   <div className="text-center py-8">
-                    <FaSpinner className="animate-spin mx-auto text-gray-400 text-2xl mb-3" />
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <FaSpinner className="animate-spin mx-auto text-zinc-400 text-2xl mb-3" />
+                    <p className="text-zinc-500 dark:text-zinc-400">
                       Cargando estudios...
                     </p>
                   </div>
@@ -115,38 +115,38 @@ const SelectStudyModal = ({
                     {Object.entries(institutions).map(
                       ([institution, studies]) => (
                         <div key={institution} className="mb-4">
-                          <div className="flex items-center p-2 bg-gray-100 dark:bg-gray-700 rounded-t-lg">
-                            <FaUniversity className="text-blue-500 mr-2 min-w-[16px]" />
-                            <span className="font-medium text-gray-900 dark:text-white truncate">
+                          <div className="flex items-center p-2 bg-zinc-100 dark:bg-zinc-700 rounded-t-lg">
+                            <FaUniversity className="text-gray-500 mr-2 min-w-[16px]" />
+                            <span className="font-medium text-zinc-900 dark:text-white truncate">
                               {institution}
                             </span>
                           </div>
-                          <div className="border border-t-0 border-gray-200 dark:border-gray-600 rounded-b-lg divide-y divide-gray-200 dark:divide-gray-600">
+                          <div className="border border-t-0 border-zinc-200 dark:border-zinc-600 rounded-b-lg divide-y divide-zinc-200 dark:divide-zinc-600">
                             {studies.map((study) => (
                               <div
                                 key={study.id}
-                                className="p-3 hover:bg-gray-50 dark:hover:bg-gray-700 flex items-center justify-between cursor-pointer"
+                                className="p-3 hover:bg-zinc-50 dark:hover:bg-zinc-700 flex items-center justify-between cursor-pointer"
                                 onClick={() => toggleStudySelection(study.id)}
                               >
                                 <div className="flex items-center min-w-0">
-                                  <FaGraduationCap className="text-blue-400 mr-3 min-w-[16px]" />
+                                  <FaGraduationCap className="text-gray-400 mr-3 min-w-[16px]" />
                                   <div className="min-w-0">
-                                    <p className="font-medium text-gray-900 dark:text-white truncate">
+                                    <p className="font-medium text-zinc-900 dark:text-white truncate">
                                       {study.name}
                                     </p>
                                     {study.description && (
-                                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">
+                                      <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 line-clamp-2">
                                         {study.description}
                                       </p>
                                     )}
                                   </div>
                                 </div>
                                 {selectedStudies.some((s) => s === study.id) ? (
-                                  <div className="w-5 h-5 flex items-center justify-center bg-blue-500 text-white rounded ml-2 flex-shrink-0">
+                                  <div className="w-5 h-5 flex items-center justify-center bg-gray-500 text-white rounded ml-2 flex-shrink-0">
                                     <FaCheck className="text-xs" />
                                   </div>
                                 ) : (
-                                  <div className="w-5 h-5 border border-gray-300 dark:border-gray-500 rounded ml-2 flex-shrink-0" />
+                                  <div className="w-5 h-5 border border-zinc-300 dark:border-zinc-500 rounded ml-2 flex-shrink-0" />
                                 )}
                               </div>
                             ))}
@@ -157,8 +157,8 @@ const SelectStudyModal = ({
                   </div>
                 ) : (
                   <div className="text-center py-8">
-                    <FaUniversity className="mx-auto text-gray-400 text-4xl mb-3" />
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <FaUniversity className="mx-auto text-zinc-400 text-4xl mb-3" />
+                    <p className="text-zinc-500 dark:text-zinc-400">
                       No hay estudios disponibles
                     </p>
                   </div>
@@ -166,7 +166,7 @@ const SelectStudyModal = ({
               </div>
             </div>
 
-            <div className="bg-gray-50 dark:bg-gray-700 px-4 py-3 flex flex-col-reverse sm:flex-row sm:justify-between gap-3 sticky bottom-0">
+            <div className="bg-zinc-50 dark:bg-zinc-700 px-4 py-3 flex flex-col-reverse sm:flex-row sm:justify-between gap-3 sticky bottom-0">
               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                 {isAdmin && (
                   <button
@@ -184,7 +184,7 @@ const SelectStudyModal = ({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-600 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full sm:w-auto"
+                  className="px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-md shadow-sm text-sm font-medium text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-full sm:w-auto"
                 >
                   Cancelar
                 </button>
@@ -192,7 +192,7 @@ const SelectStudyModal = ({
                   type="button"
                   onClick={handleSave}
                   disabled={selectedStudies.length === 0}
-                  className={`inline-flex justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 w-full sm:w-auto ${
+                  className={`inline-flex justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 w-full sm:w-auto ${
                     selectedStudies.length === 0
                       ? "opacity-50 cursor-not-allowed"
                       : ""

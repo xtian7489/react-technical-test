@@ -37,23 +37,23 @@ const Pagination = ({
 
   return (
     <div
-      className={`flex items-center justify-between border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 ${className}`}
+      className={`flex p-1 items-center justify-between border-t border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-700 ${className}`}
     >
       <div className="flex-1 flex justify-between sm:hidden">
         <button
           onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
           disabled={currentPage === 1}
-          className="relative inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300"
+          className="relative inline-flex items-center px-3 py-2 border border-zinc-300 text-sm font-medium rounded-md text-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-300"
         >
           Anterior
         </button>
-        <span className="px-3 py-2 text-sm text-gray-700 dark:text-gray-300">
+        <span className="px-3 py-2 text-sm text-zinc-700 dark:text-zinc-300">
           Página {currentPage} de {totalPages}
         </span>
         <button
           onClick={() => onPageChange(Math.min(currentPage + 1, totalPages))}
           disabled={currentPage === totalPages}
-          className="relative inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300"
+          className="relative inline-flex items-center px-3 py-2 border border-zinc-300 text-sm font-medium rounded-md text-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-300"
         >
           Siguiente
         </button>
@@ -61,7 +61,7 @@ const Pagination = ({
 
       <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between px-1">
         <div>
-          <p className=" text-sm text-gray-700 dark:text-gray-300">
+          <p className=" text-sm text-zinc-700 dark:text-zinc-300">
             Mostrando{" "}
             <span className="font-medium">
               {(currentPage - 1) * itemsPerPage + 1}
@@ -78,7 +78,7 @@ const Pagination = ({
             <button
               onClick={() => onPageChange(1)}
               disabled={currentPage === 1}
-              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300"
+              className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-zinc-300 bg-white text-sm font-medium text-zinc-500 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-300"
             >
               <span className="sr-only">Primera</span>«
             </button>
@@ -89,8 +89,8 @@ const Pagination = ({
                 onClick={() => onPageChange(page)}
                 className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
                   currentPage === page
-                    ? "z-10 bg-blue-50 border-blue-500 text-blue-600 dark:bg-blue-900 dark:border-blue-700 dark:text-blue-300"
-                    : "bg-white border-gray-300 text-gray-500 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300"
+                    ? "z-10 bg-gray-50 border-gray-500 text-gray-600 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-300"
+                    : "bg-white border-zinc-300 text-zinc-500 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-300"
                 }`}
               >
                 {page}
@@ -100,7 +100,7 @@ const Pagination = ({
             <button
               onClick={() => onPageChange(totalPages)}
               disabled={currentPage === totalPages}
-              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300"
+              className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-zinc-300 bg-white text-sm font-medium text-zinc-500 hover:bg-zinc-50 dark:bg-zinc-800 dark:border-zinc-600 dark:text-zinc-300"
             >
               <span className="sr-only">Última</span>»
             </button>
