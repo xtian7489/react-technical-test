@@ -8,6 +8,7 @@ import {
   FaSpinner,
 } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
+import { FaEye } from "react-icons/fa6";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -16,6 +17,7 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -73,7 +75,7 @@ const SignUp = () => {
             ¿Ya tienes cuenta?{" "}
             <Link
               to="/auth/login"
-              className="font-medium text-gray-600 hover:text-gray-500 dark:text-gray-400"
+              className="font-medium text-gray-600 hover:text-gray-500 dark:text-gray-400 underline"
             >
               Inicia sesión
             </Link>
@@ -121,7 +123,7 @@ const SignUp = () => {
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="new-password"
                   required
                   minLength="6"
@@ -130,6 +132,14 @@ const SignUp = () => {
                   className="block w-full pl-9 pr-3 py-2 text-sm border border-zinc-300 dark:border-zinc-600 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500 dark:bg-zinc-700 dark:text-white"
                   placeholder="••••••••"
                 />
+                <button
+                  onClick={() => setShowPassword(!showPassword)}
+                  type="button"
+                  aria-label="Mostrar contraseña"
+                  className="absolute inset-y-0 right-0 pr-3 z-20 flex items-center  cursor-pointer"
+                >
+                  <FaEye className="h-4 w-4 text-zinc-400" />
+                </button>
               </div>
               <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
                 Mínimo 6 caracteres
@@ -147,7 +157,7 @@ const SignUp = () => {
                 <input
                   id="confirm-password"
                   name="confirm-password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="new-password"
                   required
                   value={confirmPassword}
@@ -155,6 +165,14 @@ const SignUp = () => {
                   className="block w-full pl-9 pr-3 py-2 text-sm border border-zinc-300 dark:border-zinc-600 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500 dark:bg-zinc-700 dark:text-white"
                   placeholder="••••••••"
                 />
+                <button
+                  onClick={() => setShowPassword(!showPassword)}
+                  type="button"
+                  aria-label="Mostrar contraseña"
+                  className="absolute inset-y-0 right-0 pr-3 z-20 flex items-center  cursor-pointer"
+                >
+                  <FaEye className="h-4 w-4 text-zinc-400" />
+                </button>
               </div>
             </div>
 

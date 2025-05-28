@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
 import { FaUser, FaLock, FaSignInAlt, FaSpinner } from "react-icons/fa";
+import { FaEye } from "react-icons/fa6";
 
 const Login = () => {
   const { login } = useAuth();
@@ -9,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -99,7 +101,7 @@ const Login = () => {
                 <input
                   id="password"
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   autoComplete="current-password"
                   required
                   value={password}
@@ -107,6 +109,14 @@ const Login = () => {
                   className="block w-full pl-10 pr-3 py-2 border border-zinc-300 dark:border-zinc-600 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500 dark:bg-zinc-700 dark:text-white text-sm"
                   placeholder="••••••••"
                 />
+                <button
+                  onClick={() => setShowPassword(!showPassword)}
+                  type="button"
+                  aria-label="Mostrar contraseña"
+                  className="absolute inset-y-0 right-0 pr-3 z-20 flex items-center  cursor-pointer"
+                >
+                  <FaEye className="h-4 w-4 text-zinc-400" />
+                </button>
               </div>
             </div>
 
