@@ -11,9 +11,11 @@ import ConfirmationModal from "../components/global/ConfirmationModal";
 import AddressModal from "../components/userDetails/Address/AddressModal";
 import StudyModal from "../components/userDetails/Education/StudyModal";
 import { useAlert } from "../context/AlertContext";
+import { useAuth } from "../context/AuthContext";
 
 const RelatedData = () => {
   const { showAlert } = useAlert();
+  const { isAdmin } = useAuth();
   const [addresses, setAddresses] = useState([]);
   const [studies, setStudies] = useState([]);
   const [loading, setLoading] = useState(true);
